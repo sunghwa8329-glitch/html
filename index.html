@@ -1,8 +1,25 @@
-<html>
+<!DOCTYPE html>
+<html lang="ko">
 <head>
+    <meta charset="UTF-8">
+    <title>Apps Script - Netlify 연동</title>
 </head>
 <body>
-홍길동 바보!!
-이몽룡 메롱
+    <h1>Apps Script 데이터 가져오기</h1>
+    <button id="btn">데이터 요청</button>
+    <p id="result"></p>
+
+    <script>
+        const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx4kwfPLGLctGagrkABpPv_S8Z9CVgW2AfUR86SqVccZlLMXv1s5HAx_ZH0uxuADjRUyQ/exec";
+
+        document.getElementById('btn').addEventListener('click', () => {
+            fetch(APPS_SCRIPT_URL)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = data.message;
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    </script>
 </body>
 </html>
